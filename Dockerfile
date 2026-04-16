@@ -1,0 +1,13 @@
+FROM python:3.13-bookworm
+
+WORKDIR /app
+
+COPY requirements/ requirements/
+RUN pip install -r requirements/backend.in
+
+COPY spaceship/ spaceship/
+COPY build/ build/
+
+EXPOSE 8080
+
+CMD ["uvicorn", "spaceship.main:app", "--host=0.0.0.0", "--port=8080"]
